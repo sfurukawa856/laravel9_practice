@@ -16,6 +16,8 @@ class CreateController extends Controller {
 	 */
 	public function __invoke(CreateRequest $request) {
 		$tweet = new Tweet;
+		// CreateRequestで取得してきたuserIdをここで取得
+		$tweet->user_id = $request->userId();
 		// $tweetのcontentにツイート内容を代入
 		$tweet->content = $request->tweet();
 		// 保存
