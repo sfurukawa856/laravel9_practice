@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tweet extends Model {
 	use HasFactory;
-	protected $table = 'tweets';
+	/**
+	 * username method
+	 * @param
+	 * @return void
+	 */
+	public function user() {
+		// Userモデルと関連付け
+		return $this->belongsTo(User::class);
+	}
+	// protected $table = 'tweets';
 }

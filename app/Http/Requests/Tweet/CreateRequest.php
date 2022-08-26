@@ -26,6 +26,15 @@ class CreateRequest extends FormRequest {
 	}
 
 	/**
+	 * userId method Requestクラスのuser関数でログインしているユーザーのidを取得
+	 * @param
+	 * @return void
+	 */
+	public function userId(): int {
+		return $this->user()->id;
+	}
+
+	/**
 	 * tweet method
 	 * @param
 	 * @return void
