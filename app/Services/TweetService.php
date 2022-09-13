@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Tweet;
+use Carbon\Carbon;
 
 class TweetService {
 	public function getTweets() {
@@ -19,5 +20,14 @@ class TweetService {
 		if (!$tweet) return false;
 
 		return $tweet->user_id === $userId;
+	}
+
+	/**
+	 * countYesterdayTweets method
+	 * @param
+	 * @return void
+	 */
+	public function countYesterdayTweets(): int {
+		return Tweet::whereDate('created_at', '>=', Carbon::yesterday()->toDateTimeString())->count();
 	}
 }
