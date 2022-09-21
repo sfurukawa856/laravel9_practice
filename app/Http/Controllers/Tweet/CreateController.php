@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Tweet\CreateRequest;
 // Tweetモデルをインポート
 use App\Models\Tweet;
+use App\Services\TweetService;
 
 class CreateController extends Controller {
 	/**
@@ -14,14 +15,12 @@ class CreateController extends Controller {
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function __invoke(CreateRequest $request) {
-		$tweet = new Tweet;
-		// CreateRequestで取得してきたuserIdをここで取得
-		$tweet->user_id = $request->userId();
-		// $tweetのcontentにツイート内容を代入
-		$tweet->content = $request->tweet();
-		// 保存
-		$tweet->save();
+	public function __invoke(CreateRequest $request, TweetService $tweetService) {
+		$tweetService->saveTweet(
+			$request->userId(),
+			$request->tweet(),
+			$request->images()
+		);
 
 		return redirect()->route('tweet.index');
 	}

@@ -16,5 +16,13 @@ class Tweet extends Model {
 		// Userモデルと関連付け
 		return $this->belongsTo(User::class);
 	}
-	// protected $table = 'tweets';
+
+	/**
+	 * images method
+	 * @param
+	 * @return void
+	 */
+	public function images() {
+		return $this->belongsToMany(Image::class, 'tweet_images')->using(TweetImage::class);
+	}
 }

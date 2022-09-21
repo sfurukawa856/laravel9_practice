@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\TweetService;
 use Illuminate\Http\Request;
 use App\Models\Tweet;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 
 class IndexController extends Controller {
 	/**

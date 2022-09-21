@@ -21,7 +21,9 @@ class CreateRequest extends FormRequest {
 	 */
 	public function rules() {
 		return [
-			'tweet' => 'required|max:140'
+			'tweet' => 'required|max:140',
+			'images' => 'array|max:4',
+			'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
 		];
 	}
 
@@ -43,5 +45,14 @@ class CreateRequest extends FormRequest {
 		// FormRequestがRequestモデルを継承しているのでinputメソッドが使える
 		// リクエスト内容からデータを取得している
 		return $this->input('tweet');
+	}
+
+	/**
+	 * images method
+	 * @param
+	 * @return void
+	 */
+	public function images() {
+		return $this->file('images', []);
 	}
 }
